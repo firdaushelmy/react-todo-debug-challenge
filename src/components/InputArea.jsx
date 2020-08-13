@@ -5,7 +5,7 @@ function InputArea({ handleChange, inputText, addItem }) {
   return (
     <div className='form'>
       <input onChange={handleChange} type='text' value={inputText} />
-      <button type='button' onClick={addItem}>
+      <button type='submit' onClick={addItem}>
         <span>Add</span>
       </button>
     </div>
