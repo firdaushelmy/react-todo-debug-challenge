@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function InputArea({ handleChange, inputText, addItem }) {
   return (
     <div className='form'>
-      <input onChange={handleChange} type='text' value={inputText} />
+      <input type='text' onChange={handleChange} value={inputText} />
       <button type='submit' onClick={addItem}>
         <span>Add</span>
       </button>

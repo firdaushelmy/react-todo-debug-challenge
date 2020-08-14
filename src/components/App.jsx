@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import uuid from 'react-uuid';
-import ToDoItem from './ToDoItem';
 import InputArea from './InputArea';
+import ToDoItem from './ToDoItem';
 
 function App() {
   const [inputText, setInputText] = useState('');
@@ -13,10 +13,12 @@ function App() {
   }
 
   function addItem() {
-    setItems((prevItems) => {
-      return [...prevItems, inputText];
-    });
-    setInputText('');
+    if (inputText !== '') {
+      setItems((prevItems) => {
+        return [...prevItems, inputText];
+      });
+      setInputText('e');
+    }
   }
 
   function deleteItem(id) {
@@ -32,7 +34,7 @@ function App() {
       <div className='heading'>
         <h1>To-Do List</h1>
       </div>
-      <InputArea />
+      <InputArea handleChange={handleChange} addItem={addItem} />
       <div>
         <ul>
           {items.map((todoItem, index) => (
@@ -41,8 +43,6 @@ function App() {
               id={index}
               text={todoItem}
               onChecked={deleteItem}
-              handleChange={handleChange}
-              addItem={addItem}
             />
           ))}
         </ul>
