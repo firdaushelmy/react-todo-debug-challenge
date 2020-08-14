@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function InputArea({ handleChange, inputText, addItem }) {
+function InputArea({ addItem }) {
+  const [inputText, setInputText] = useState('');
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    setInputText(newValue);
+  }
+
   return (
     <div className='form'>
       <input type='text' onChange={handleChange} value={inputText} />
-      <button type='submit' onClick={addItem}>
+      <button
+        type='submit'
+        onClick={() => {
+          addItem(inputText);
+          setInputText('');
+        }}
+      >
         <span>Add</span>
       </button>
     </div>
@@ -13,8 +26,6 @@ function InputArea({ handleChange, inputText, addItem }) {
 }
 
 InputArea.propTypes = {
-  handleChange: PropTypes.string.isRequired,
-  inputText: PropTypes.string.isRequired,
   addItem: PropTypes.string.isRequired,
 };
 

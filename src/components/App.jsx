@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
-import uuid from 'react-uuid';
+import { v4 as uuidv4 } from 'uuid';
 import InputArea from './InputArea';
 import ToDoItem from './ToDoItem';
 
 function App() {
-  const [inputText, setInputText] = useState('');
   const [items, setItems] = useState([]);
 
-  function handleChange(event) {
-    const newValue = event.target.value;
-    setInputText(newValue);
-  }
-
-  function addItem() {
+  function addItem(inputText) {
     if (inputText !== '') {
       setItems((prevItems) => {
         return [...prevItems, inputText];
       });
-      setInputText('e');
     }
   }
 
@@ -34,12 +27,12 @@ function App() {
       <div className='heading'>
         <h1>To-Do List</h1>
       </div>
-      <InputArea handleChange={handleChange} addItem={addItem} />
+      <InputArea addItem={addItem} />
       <div>
         <ul>
           {items.map((todoItem, index) => (
             <ToDoItem
-              key={uuid}
+              key={uuidv4}
               id={index}
               text={todoItem}
               onChecked={deleteItem}
